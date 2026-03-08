@@ -47,21 +47,6 @@ export default function Hero() {
           {t.hero.description}
         </p>
 
-        {/* Buttons with fade-in */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn" style={{ animationDelay: '1s' }}>
-          <a
-            href="#projects"
-            className="inline-flex items-center justify-center px-8 py-4 bg-accent text-background font-semibold rounded-xl hover:bg-accent/90 transition-all duration-200 cursor-pointer hover:scale-105 shadow-lg shadow-accent/25"
-          >
-            {t.hero.viewProjects}
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-semibold rounded-xl hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer"
-          >
-            {t.hero.getInTouch}
-          </a>
-        </div>
       </div>
     </section>
   );

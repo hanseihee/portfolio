@@ -113,7 +113,18 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-muted text-lg leading-relaxed">
               {t.about.description.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <p key={index}>
+                  {paragraph.split(/(\*\*.*?\*\*)/).map((part, i) => {
+                    if (part.startsWith("**") && part.endsWith("**")) {
+                      return (
+                        <span key={i} className="text-accent font-bold">
+                          {part.slice(2, -2)}
+                        </span>
+                      );
+                    }
+                    return part;
+                  })}
+                </p>
               ))}
             </div>
           </div>

@@ -91,16 +91,17 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "F1-boxbox.com",
-          metric: "한국 최대 F1 사이트",
+          metric: "MAU 15만 · 한국 최대 F1 사이트",
           description: "• F1 데이터 기반 뉴스 및 분석 웹사이트\n• F1 관련 데이터 수집/분석 및 시각화\n• SEO 최적화로 검색엔진 노출 극대화\n• 모바일/데스크톱 UX/UI 최적화\n• 다국어(한국어/영어) 지원\n• 검색 유입 트래픽 지속 증가",
           tags: ["Sports", "F1", "SEO"],
           link: "https://f1-boxbox.com",
         },
         {
           name: "꾸쥬워마이걸",
-          metric: "구글플레이 1위 · 앱스토어 2위",
-          description: "• 구글플레이 무료 전체 1위, 앱스토어 무료 전체 2위 달성\n• 사진 합성 밈 생성 앱 (1인 개발)\n• 산다라박 등 연예인 사용으로 SNS 바이럴\n• 400만 다운로드 기록",
-          tags: ["iOS/Android", "플레이스토어 1위", "1인 개발"],
+          metric: "구글플레이 1위 · 앱스토어 1위",
+          description: "• 구글플레이 무료 전체 1위, 앱스토어 무료 전체 1위 달성\n• 사진 합성 밈 생성 앱 (1인 개발)\n• 김태희, 정형돈 등 연예인 사용으로 SNS 바이럴\n• 400만 다운로드 기록",
+          tags: ["iOS/Android", "플레이스토어 1위", "앱스토어 1위", "MAU 400만", "1인 개발"],
+          link: "https://www.donga.com/news/Entertainment/article/all/20130417/54489556/3",
         },
         {
           name: "픽미주 (PICKMIJU)",
@@ -115,6 +116,13 @@ export const translations: Record<Locale, Translation> = {
           description: "• 티켓팅/수강신청용 정확한 서버시간 앱\n• 밀리초 단위 시간 표시\n• 오차 보정으로 정확한 시간 제공\n• 다이나믹 아일랜드/잠금화면 위젯\n• PIP 모드 지원\n• App Store 평점 4.5",
           tags: ["iOS", "Swift", "티켓팅"],
           link: "https://apps.apple.com/kr/app/id6499110329",
+        },
+        {
+          name: "집얼마 (ulmazip)",
+          metric: "아파트 실거래가 · 전월세 · 시세분석",
+          description: "• 국토교통부 공공데이터 기반 아파트 실거래가 분석 플랫폼\n• 매매/전월세 실시간 시세 조회 및 트렌드 차트\n• 예산별 아파트 검색 기능\n• 지역별 시세 비교 분석\n• 거래량 히트맵, 평균가/최고가/최저가 통계\n• Next.js + TypeScript + Supabase",
+          tags: ["Real Estate", "Next.js", "공공데이터"],
+          link: "https://ulmazip.com",
         },
       ],
       workItems: [
@@ -222,7 +230,7 @@ export const translations: Record<Locale, Translation> = {
     about: {
       title: "소개",
       description: [
-        "개발 9년 + PM 8년, 총 17년 경력의 개발자 출신 PO/PM입니다. 500만+ MAU 서비스 3건을 직접 기획·운영하며 시장 1위 달성 경험을 보유하고 있습니다.",
+        "**개발 9년 + PM 8년**, 총 17년 경력의 개발자 출신 PO/PM입니다. **500만+ MAU 서비스 3건**을 직접 기획·운영하며 **시장 1위 달성** 경험을 보유하고 있습니다.",
         "개발 프로세스에 대한 깊은 이해를 바탕으로 개발자들과 원활하게 소통하고, 기술적 요구사항을 비개발자와도 효과적으로 연결합니다. 개발자 관점에서 작업 분량과 난이도를 현실적으로 평가하고, 실제 개발 환경에 맞춘 일정 계획을 수립합니다.",
         "기술-비즈니스-조직 리딩 역량을 바탕으로 신규 서비스 런칭 및 성장에 탁월한 성과를 창출했습니다. 개발자들에게 기술적 신뢰를 주는 PM으로 인정받으며 높은 협업 효율을 달성합니다.",
         "최근에는 AI 기술에 깊은 관심을 갖고, Claude Code와 Codex 등을 활용한 업무 자동화 및 AI 기반 서비스 기획에 집중하고 있습니다.",
@@ -278,16 +286,17 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "F1-boxbox.com",
-          metric: "Largest F1 Site in Korea",
+          metric: "150K MAU · Largest F1 Site in Korea",
           description: "• F1 data-driven news & analysis website\n• F1 data collection, analysis & visualization\n• SEO optimization for search visibility\n• Mobile/Desktop UX/UI optimization\n• Multi-language support (KR/EN)\n• Growing search traffic & engagement",
           tags: ["Sports", "F1", "SEO"],
           link: "https://f1-boxbox.com",
         },
         {
           name: "Ggujuwomygirl",
-          metric: "Google Play #1 · App Store #2",
-          description: "• #1 Free Overall on Google Play, #2 Free Overall on App Store\n• Photo meme generator app (Solo dev)\n• Viral on SNS with celebrities like Sandara Park\n• 4M downloads achieved",
-          tags: ["iOS/Android", "Play Store #1", "Solo Dev"],
+          metric: "Google Play #1 · App Store #1",
+          description: "• #1 Free Overall on Google Play, #1 Free Overall on App Store\n• Photo meme generator app (Solo dev)\n• Viral on SNS with Kim Tae-hee, Jung Hyung-don, etc.\n• 4M downloads achieved",
+          tags: ["iOS/Android", "Play Store #1", "App Store #1", "4M MAU", "Solo Dev"],
+          link: "https://www.donga.com/news/Entertainment/article/all/20130417/54489556/3",
         },
         {
           name: "Pickmiju",
@@ -302,6 +311,13 @@ export const translations: Record<Locale, Translation> = {
           description: "• Precision server time app for ticketing\n• Millisecond-level time display\n• Error correction for accuracy\n• Dynamic Island/Lock Screen widgets\n• PIP mode support\n• App Store rating 4.5",
           tags: ["iOS", "Swift", "Ticketing"],
           link: "https://apps.apple.com/kr/app/id6499110329",
+        },
+        {
+          name: "Ulmazip",
+          metric: "Apartment Prices · Rent · Market Analysis",
+          description: "• Apartment real transaction price analysis platform based on Korean government public data\n• Real-time sales/rental price lookup with trend charts\n• Budget-based apartment search\n• Regional price comparison analysis\n• Volume heatmap, average/highest/lowest price stats\n• Next.js + TypeScript + Supabase",
+          tags: ["Real Estate", "Next.js", "Public Data"],
+          link: "https://ulmazip.com",
         },
       ],
       workItems: [
@@ -409,7 +425,7 @@ export const translations: Record<Locale, Translation> = {
     about: {
       title: "About Me",
       description: [
-        "9 years as Developer + 8 years as PM. Ex-developer PO/PM with 17 years in tech. Planned and operated 3 services with 5M+ MAU, achieving #1 market position.",
+        "**9 yrs Dev + 8 yrs PM**. Ex-developer PO/PM with 17 years in tech. Planned and operated **3 services with 5M+ MAU**, achieving **#1 market position**.",
         "Deep understanding of development processes enables smooth communication with engineers. I bridge technical requirements with non-technical stakeholders effectively. I realistically assess workload and complexity from a developer's perspective.",
         "Strong leadership in tech, business, and organization drives exceptional results in launching and growing new services. Recognized as a PM who earns technical trust from developers, achieving high collaboration efficiency.",
         "Recently, I have a deep interest in AI technology, focusing on workflow automation and AI-powered service planning using tools like Claude Code and Codex.",

@@ -15,6 +15,8 @@ const projectImages: Record<string, string> = {
   "Pickmiju": "https://www.pickmiju.com/og-image.png",
   "오구오구": "/images/oguogu.webp", // OguOgu server time app
   "OguOgu": "/images/oguogu.webp",
+  "집얼마 (ulmazip)": "/images/ulmazip.png",
+  "Ulmazip": "/images/ulmazip.png",
 
   // Work Projects
   "해외송금 앱 & AI 자동화": "/images/gme-remit.jpg", // GME Remittance app
