@@ -70,7 +70,7 @@ export const translations: Record<Locale, Translation> = {
     hero: {
       available: "Open to opportunities",
       greeting: "",
-      name: "Sei Hee Han",
+      name: "한세희",
       intro: "Product Manager · Ex-Developer",
       description:
         "개발 9년 + PM 8년. 500만+ MAU 서비스 3건, 시장 1위 달성.",
