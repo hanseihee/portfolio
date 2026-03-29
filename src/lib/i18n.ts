@@ -30,6 +30,7 @@ export interface Translation {
     workItems: Array<{
       name: string;
       company: string;
+      role: string;
       period: string;
       description: string;
       tags: string[];
@@ -136,6 +137,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "해외송금 앱 & AI 자동화",
           company: "글로벌머니익스프레스",
+          role: "팀장",
           period: "2025 - 현재",
           description: "• 해외송금 모바일팀 운영\n• 대출서비스 신규 기획\n• 해외 송금 시스템 고도화 프로젝트 관리\n• 개발팀 및 외부 협력사 커뮤니케이션 (일정/품질/비용 조율)\n• AI 기반 번역 자동화 Tool 개발\n• JIRA Tasks 관리 Tool 개발로 업무 효율화",
           tags: ["Fintech", "AI Automation", "현재"],
@@ -144,6 +146,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Esports.op.gg",
           company: "OP.GG",
+          role: "팀장",
           period: "2020 - 2025",
           description: "• 리그오브레전드 e스포츠 데이터 플랫폼\n• 초기 아이디어 제안 → 기획/개발관리/마케팅/운영 전반 리드\n• iOS/Android/Web 서비스 운영\n• 경기일정, 선수정보, 경기결과 데이터 시각화\n• UX/UI 설계 및 프로토타이핑\n• 성과: 체류시간 20%↑, CTR 15%↑\n• 연간 사용자 0명→500만명 성장, MAU 315만",
           tags: ["0→500만", "CTR 15%↑", "PO 팀장"],
@@ -152,6 +155,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Duo.op.gg",
           company: "OP.GG",
+          role: "팀장",
           period: "2021 - 2024",
           description: "• 리그오브레전드 듀오 매칭 플랫폼\n• 아이디어 제안 → 기획/개발관리/마케팅 전 과정 리드\n• 사용자 페인포인트 분석 및 솔루션 제안\n• 매칭 알고리즘 기획 및 개선\n• 마케팅 전략 수립 및 실행\n• 성과: 누적 사용자 218만, 매칭 성공률 35%↑, 재방문율 25%↑",
           tags: ["MAU 218만", "매칭 35%↑", "재방문 25%↑"],
@@ -160,6 +164,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Pal.op.gg",
           company: "OP.GG",
+          role: "팀장",
           period: "2024",
           description: "• 펠월드 인게임 오버레이 확장프로그램\n• 아이디어 제안 → 기획/개발관리/배포 전 과정 리드\n• 미니맵 및 맵정보 실시간 표시 기능 기획\n• 게임 트렌드에 맞춘 빠른 마케팅 실행\n• 성과: 8만 사용자 확보",
           tags: ["Gaming", "Extension", "8만 사용자"],
@@ -168,6 +173,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "QWER.GG → OP.GG 매각",
           company: "라우드커뮤니케이션즈",
+          role: "팀장",
           period: "2020 - 2021",
           description: "• 개인 프로젝트로 시작 → 라우드커뮤니케이션즈 인수\n• e스포츠 데이터 기반 정보제공 사이트\n• 초기 기획부터 마케팅 진행\n• 프로구단과 데이터 기반 협업\n• 게이밍 기어 회사들과 영업 및 마케팅\n• 성과: 월 사용자 10만 달성 후 OP.GG에 팀&제품 매각",
           tags: ["Startup", "Exit", "OP.GG 매각"],
@@ -175,6 +181,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "GOPAX 암호화폐 거래소",
           company: "스트리미",
+          role: "팀장",
           period: "2017 - 2019",
           description: "• 암호화폐 거래소 iOS/Android/Web A to Z 기획\n• Apple Watch App 기획\n• 인도네시아 런칭 및 운영\n• ISMS 국제표준 인증 관리\n• GA 및 자체 분석툴로 사용자 이탈구간/클릭패턴 분석\n• A/B 테스트로 UX 최적화\n• 바이럴 마케팅 (추천 이벤트/SNS/인플루언서)\n• 성과: 신규 30%↑, 재방문 20%↑, 하루 거래량 최대 500억, 회원수 30만",
           tags: ["500억 거래량", "신규 30%↑", "ISMS"],
@@ -183,6 +190,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "번개장터 iOS",
           company: "번개장터",
+          role: "팀장",
           period: "2017",
           description: "• 중고거래 플랫폼 iOS 네이티브 개발 (Objective-C)\n• 번개톡 (실시간 채팅) 개발\n• SNS 회원가입 인증 모듈 개발\n• 메인/상품상세/물품등록 페이지 리뉴얼\n• UI/UX 최적화로 사용자 유지율 상승\n• 채팅 안정화 및 응답속도 개선\n• 규모: MAU 420만, 회원수 1300만 서비스",
           tags: ["MAU 420만", "채팅 개발", "UX 최적화"],
@@ -191,6 +199,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "빨대 - 쇼핑몰 관리 앱",
           company: "죠셉데일컴퍼니",
+          role: "연구원",
           period: "2015 - 2017",
           description: "• 국내 최초 쇼핑몰 관리 앱 개발\n• Xamarin 이용 iOS/Android 크로스 플랫폼 개발\n• 메인페이지, 배송관리 페이지 구현\n• 판매자 편의성 중심 UX 설계",
           tags: ["국내 최초", "Xamarin", "Cross-platform"],
@@ -198,6 +207,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "소셜 쇼핑플랫폼",
           company: "피키캐스트",
+          role: "연구원",
           period: "2015",
           description: "• 인플루언서 기반 iOS 소셜 쇼핑플랫폼\n• 1인 개발 A to Z (Objective-C)\n• 회원가입, 메인페이지, 사진등록, 검색, 좋아요 등 전체 기능 구현",
           tags: ["1인 개발", "A to Z", "Social Commerce"],
@@ -205,6 +215,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "KBS 스토리지 시스템",
           company: "맑은기술",
+          role: "연구원",
           period: "2014 - 2015",
           description: "• OS X용 KBS Live 스토리지 어플리케이션 개발 (Objective-C)\n• 실시간 데이터 백업 및 복구 시스템 구축\n• 파일 탐색 UI 개발\n• 백업 시스템 안정성 향상\n• UI 개선으로 사용 편의성 증대\n• KBS 상용화 성공",
           tags: ["KBS 상용화", "macOS", "방송시스템"],
@@ -213,6 +224,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "히어로즈 오브 엠파이어",
           company: "엔타즈",
+          role: "연구원",
           period: "2012 - 2014",
           description: "• 모바일 전략 시뮬레이션 게임 개발 (Cocos2d-x)\n• Tilemap 기반 지도 UI 및 알고리즘 구현\n• 전투 UI 개발\n• 소켓 프로그래밍으로 실시간 멀티플레이 구현\n• 국내 통신3사(SKT, KT, LGU+) 동시 오픈",
           tags: ["통신3사 오픈", "Cocos2d-x", "실시간 멀티플레이"],
@@ -220,6 +232,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Microsoft Surface 광고 플랫폼",
           company: "디스트릭트홀딩스",
+          role: "연구원",
           period: "2009 - 2011",
           description: "• 세계 최초 멀티터치 테이블 기반 광고 플랫폼 개발 (C# WPF)\n• Surface 기반 인터랙티브 어플리케이션\n• 글로벌 이벤트 성공적 운영:\n  - 삼성전자 2010 CES 라스베가스\n  - 삼성전자 2010 밴쿠버 올림픽\n  - 현대차 2011 상해/제네바 모터쇼\n  - 이상봉 2011 뉴욕 패션위크",
           tags: ["세계 최초", "삼성/현대", "글로벌 이벤트"],
@@ -228,6 +241,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "B2B 메신저",
           company: "넥서스커뮤니티",
+          role: "연구원",
           period: "2008 - 2009",
           description: "• 고객센터용 B2B 사내 메신저 개발 (C#)\n• 실시간 채팅, 파일전송, 화면공유 기능 구현\n• 인바운드 모니터링 기능 구현\n• 대기업 상용화: 우리은행, 인터파크 등",
           tags: ["B2B 상용화", "우리은행", "인터파크"],
@@ -338,6 +352,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Remittance App & AI Automation",
           company: "Global Money Express",
+          role: "Team Lead",
           period: "2025 - Present",
           description: "• International remittance mobile team management\n• New loan service planning\n• Remittance system advancement project management\n• Schedule/quality/cost coordination with dev team & partners\n• AI-based translation automation tool development\n• JIRA task management tool for workflow optimization",
           tags: ["Fintech", "AI Automation", "Current"],
@@ -346,6 +361,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Esports.op.gg",
           company: "OP.GG",
+          role: "Team Lead",
           period: "2020 - 2025",
           description: "• LoL e-Sports data platform\n• Led from initial idea → planning/dev/marketing/operations\n• iOS/Android/Web service operation\n• Match schedules, player info, game results visualization\n• UX/UI design and prototyping\n• Results: Session time 20%↑, CTR 15%↑\n• Grew from 0 to 5M annual users, 3.15M MAU",
           tags: ["0→5M", "CTR 15%↑", "PO Lead"],
@@ -354,6 +370,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Duo.op.gg",
           company: "OP.GG",
+          role: "Team Lead",
           period: "2021 - 2024",
           description: "• LoL duo matching platform\n• Led entire process: idea → planning/dev management/marketing\n• User pain point analysis & solution proposals\n• Matching algorithm planning & improvement\n• Marketing strategy development & execution\n• Results: 2.18M users, Matching 35%↑, Return rate 25%↑",
           tags: ["2.18M MAU", "Matching 35%↑", "Return 25%↑"],
@@ -362,6 +379,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Pal.op.gg",
           company: "OP.GG",
+          role: "Team Lead",
           period: "2024",
           description: "• Palworld in-game overlay extension\n• Led entire process: idea → planning/dev management/deployment\n• Minimap & real-time map info display planning\n• Fast marketing execution aligned with game trends\n• Results: 80K users acquired",
           tags: ["Gaming", "Extension", "80K Users"],
@@ -370,6 +388,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "QWER.GG → Sold to OP.GG",
           company: "Loud Communications",
+          role: "Team Lead",
           period: "2020 - 2021",
           description: "• Started as personal project → acquired by Loud Communications\n• e-Sports data-driven information site\n• Led planning & marketing from inception\n• Pro team data collaboration\n• Gaming gear company sales & marketing\n• Results: 100K monthly users → Team & product sold to OP.GG",
           tags: ["Startup", "Exit", "Acquired by OP.GG"],
@@ -377,6 +396,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "GOPAX Crypto Exchange",
           company: "Streami",
+          role: "Team Lead",
           period: "2017 - 2019",
           description: "• Crypto exchange iOS/Android/Web A to Z planning\n• Apple Watch App planning\n• Indonesia launch & operations\n• ISMS international certification management\n• User churn/click pattern analysis via GA & custom tools\n• A/B testing for UX optimization\n• Viral marketing (referrals/SNS/influencers)\n• Results: New users 30%↑, Max daily volume $40M, 300K members",
           tags: ["$40M Volume", "New Users 30%↑", "ISMS"],
@@ -385,6 +405,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Bungaejangter iOS",
           company: "Bungaejangter",
+          role: "Team Lead",
           period: "2017",
           description: "• Secondhand marketplace iOS native development (Objective-C)\n• Real-time chat (Bungae Talk) development\n• SNS signup authentication module\n• Main/product detail/listing page renewal\n• UI/UX optimization improved user retention\n• Chat stabilization & response speed improvement\n• Scale: 4.2M MAU, 13M members service",
           tags: ["4.2M MAU", "Chat Dev", "UX Optimization"],
@@ -393,6 +414,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Bbaldae - Shopping Mall Manager App",
           company: "Joseph Dale Company",
+          role: "Researcher",
           period: "2015 - 2017",
           description: "• Korea's first shopping mall management app\n• iOS/Android cross-platform development using Xamarin\n• Main page & delivery management implementation\n• Seller-focused UX design",
           tags: ["First in Korea", "Xamarin", "Cross-platform"],
@@ -400,6 +422,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Social Shopping Platform",
           company: "Pikicast",
+          role: "Researcher",
           period: "2015",
           description: "• Influencer-based iOS social shopping platform\n• Solo development A to Z (Objective-C)\n• Signup, main page, photo upload, search, likes - all features",
           tags: ["Solo Dev", "A to Z", "Social Commerce"],
@@ -407,6 +430,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "KBS Storage System",
           company: "Malgeun Technology",
+          role: "Researcher",
           period: "2014 - 2015",
           description: "• OS X KBS Live storage application development (Objective-C)\n• Real-time data backup & recovery system\n• File browser UI development\n• Improved backup system stability\n• Enhanced usability through UI improvements\n• Commercialized for KBS",
           tags: ["KBS Commercialized", "macOS", "Broadcast System"],
@@ -415,6 +439,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Heroes of Empire",
           company: "Entaz",
+          role: "Researcher",
           period: "2012 - 2014",
           description: "• Mobile strategy simulation game development (Cocos2d-x)\n• Tilemap-based map UI & algorithm implementation\n• Battle UI development\n• Real-time multiplayer via socket programming\n• Simultaneous launch on all 3 Korean carriers (SKT, KT, LGU+)",
           tags: ["3 Carriers Launch", "Cocos2d-x", "Realtime Multiplayer"],
@@ -422,6 +447,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "Microsoft Surface Ad Platform",
           company: "d'strict Holdings",
+          role: "Researcher",
           period: "2009 - 2011",
           description: "• World's first multitouch table-based ad platform (C# WPF)\n• UX-based interactive application using Surface\n• Global events operated:\n  - Samsung 2010 CES Las Vegas\n  - Samsung 2010 Vancouver Olympics\n  - Hyundai 2011 Shanghai/Geneva Motor Show\n  - Lee Sang-bong 2011 NY Fashion Week",
           tags: ["World's First", "Samsung/Hyundai", "Global Events"],
@@ -430,6 +456,7 @@ export const translations: Record<Locale, Translation> = {
         {
           name: "B2B Messenger",
           company: "Nexus Community",
+          role: "Researcher",
           period: "2008 - 2009",
           description: "• B2B enterprise messenger for call centers (C#)\n• Real-time chat, file transfer, screen sharing\n• Inbound monitoring features\n• Commercialized: Woori Bank, Interpark, etc.",
           tags: ["B2B Commercialized", "Woori Bank", "Interpark"],

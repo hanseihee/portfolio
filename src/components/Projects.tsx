@@ -195,10 +195,13 @@ export default function Projects() {
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-primary lg:bg-gradient-to-r lg:from-transparent lg:via-primary/50 lg:to-primary" />
                             <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent lg:hidden" />
 
-                            {/* Company Badge */}
-                            <div className="absolute top-4 left-4">
+                            {/* Company & Role Badge */}
+                            <div className="absolute top-4 left-4 flex items-center gap-2">
                               <span className="px-4 py-2 bg-background/80 backdrop-blur-md text-foreground text-sm font-semibold rounded-full border border-secondary">
                                 {project.company}
+                              </span>
+                              <span className="px-3 py-2 bg-accent/90 backdrop-blur-md text-background text-xs font-bold rounded-full">
+                                {project.role}
                               </span>
                             </div>
                           </div>
