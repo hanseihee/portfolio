@@ -11,8 +11,8 @@ const projectImages: Record<string, string> = {
   "F1-boxbox.com": "/images/f1-boxbox.png", // Actual F1 Boxbox logo
   "꾸쥬워마이걸": "/images/couple-diary.jpg", // Actual couple diary app screenshot
   "Ggujuwomygirl": "/images/couple-diary.jpg",
-  "픽미주 (PICKMIJU)": "https://www.pickmiju.com/og-image.png", // Pickmiju OG image
-  "Pickmiju": "https://www.pickmiju.com/og-image.png",
+  "픽미주 (PICKMIJU)": "/images/pickmiju.png", // Pickmiju OG image
+  "Pickmiju": "/images/pickmiju.png",
   "오구오구": "/images/oguogu.webp", // OguOgu server time app
   "OguOgu": "/images/oguogu.webp",
   "집얼마 (ulmazip)": "/images/ulmazip.png",
@@ -28,8 +28,8 @@ const projectImages: Record<string, string> = {
   "Pal.op.gg": "/images/pal-opgg.png", // Actual Pal.op.gg screenshot
   "QWER.GG → OP.GG 매각": "/images/qwer-opgg.jpg", // OP.GG brand image
   "QWER.GG → Sold to OP.GG": "/images/qwer-opgg.jpg",
-  "GOPAX 암호화폐 거래소": "https://www.gopax.co.kr/gopax-og.jpg", // Actual GOPAX image
-  "GOPAX Crypto Exchange": "https://www.gopax.co.kr/gopax-og.jpg",
+  "GOPAX 암호화폐 거래소": "/images/gopax.jpg", // Actual GOPAX image
+  "GOPAX Crypto Exchange": "/images/gopax.jpg",
   "번개장터 iOS": "/images/bunjang.jpg", // Actual Bunjang app image
   "Bungaejangter iOS": "/images/bunjang.jpg",
   "빨대 - 쇼핑몰 관리 앱": "/images/shopping-mall-app.png", // Actual shopping mall app screenshot
