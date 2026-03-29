@@ -17,6 +17,8 @@ const projectImages: Record<string, string> = {
   "OguOgu": "/images/oguogu.webp",
   "집얼마 (ulmazip)": "/images/ulmazip.png",
   "Ulmazip": "/images/ulmazip.png",
+  "영어하자": "/images/youngohaja.png",
+  "YoungoHaja": "/images/youngohaja.png",
 
   // Work Projects
   "해외송금 앱 & AI 자동화": "/images/gme-remit.jpg", // GME Remittance app

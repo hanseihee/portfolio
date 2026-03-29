@@ -124,6 +124,13 @@ export const translations: Record<Locale, Translation> = {
           tags: ["Real Estate", "Next.js", "공공데이터"],
           link: "https://ulmazip.com",
         },
+        {
+          name: "영어하자",
+          metric: "영어회화 · 발음평가 · 6단계 레벨",
+          description: "• 매일 업데이트되는 실생활 영어회화 학습 앱 (1인 개발)\n• A1~C2 6단계 난이도별 학습 콘텐츠\n• 음성인식 기반 발음 평가 (단어별 정확도 채점)\n• 문법 해설, 단어장, 퀴즈 모드\n• 학습 캘린더, 스트릭, XP, 배지 시스템\n• iOS/macOS 지원 · Swift",
+          tags: ["iOS", "Swift", "Education", "1인 개발"],
+          link: "https://apps.apple.com/kr/app/id6760590621",
+        },
       ],
       workItems: [
         {
@@ -318,6 +325,13 @@ export const translations: Record<Locale, Translation> = {
           description: "• Apartment real transaction price analysis platform based on Korean government public data\n• Real-time sales/rental price lookup with trend charts\n• Budget-based apartment search\n• Regional price comparison analysis\n• Volume heatmap, average/highest/lowest price stats\n• Next.js + TypeScript + Supabase",
           tags: ["Real Estate", "Next.js", "Public Data"],
           link: "https://ulmazip.com",
+        },
+        {
+          name: "YoungoHaja",
+          metric: "English Conversation · Pronunciation · 6 Levels",
+          description: "• Daily updated real-life English conversation learning app (Solo dev)\n• A1-C2 six difficulty levels\n• Voice recognition-based pronunciation scoring (word-by-word accuracy)\n• Grammar lessons, vocabulary list, quiz mode\n• Study calendar, streaks, XP, badge system\n• iOS/macOS support · Swift",
+          tags: ["iOS", "Swift", "Education", "Solo Dev"],
+          link: "https://apps.apple.com/kr/app/id6760590621",
         },
       ],
       workItems: [
