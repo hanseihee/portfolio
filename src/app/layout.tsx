@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
-import "./globals.css";
+import "./portfolio.css";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -16,13 +16,23 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Developer Portfolio",
-  description: "Professional developer portfolio showcasing projects and skills",
-  keywords: ["developer", "portfolio", "web development", "software engineer"],
-  authors: [{ name: "Developer" }],
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : process.env.VERCEL_URL
+          ? `https://${process.env.VERCEL_URL}`
+          : "http://localhost:3000"),
+  ),
+  title: "한세희 · Sei Hee Han — Ideas into impact.",
+  description:
+    "개발자 출신 프로덕트 매니저 한세희. OP.GG, 김프가, F1 BOXBOX — 기술을 이해하고 사람을 위한 제품을 만듭니다.",
+  keywords: ["한세희", "Sei Hee Han", "Product Manager", "portfolio", "OP.GG"],
+  authors: [{ name: "Sei Hee Han" }],
   openGraph: {
-    title: "Developer Portfolio",
-    description: "Professional developer portfolio showcasing projects and skills",
+    title: "Sei Hee Han — Ideas into impact.",
+    description:
+      "Developer’s mind. Product’s heart. Explore the work of a developer turned product manager.",
     type: "website",
   },
 };
