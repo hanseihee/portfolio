@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
 import "./portfolio.css";
+import "./projects.css";
 
 const archivo = Archivo({
   variable: "--font-archivo",

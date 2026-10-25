@@ -24,7 +24,7 @@ const personal = [
     color: "#d6e4bc",
   },
   { id: "f1", period: "Independent", image: "f1-boxbox.png", color: "#f26b4f" },
-  { id: "meme", period: "2013", color: "#edcfea" },
+  { id: "meme", period: "2013", image: "couple-diary.jpg", color: "#edcfea" },
   {
     id: "pickmiju",
     period: "Independent",
@@ -59,7 +59,7 @@ const work = [
   { id: "qwer", image: "qwer-opgg.jpg", color: "#d6c6e7" },
   { id: "gopax", image: "gopax.jpg", color: "#c1d4f0" },
   { id: "bunjang", image: "bunjang.jpg", color: "#f2c1b6" },
-  { id: "commerce", image: "shopping-mall-app.jpg", color: "#c8dfd5" },
+  { id: "commerce", image: "shopping-mall-app.png", color: "#c8dfd5" },
   { id: "pikicast", image: "pikicast.jpg", color: "#f0dbac" },
   { id: "kbs", image: "kbs-storage.jpg", color: "#cbd6df" },
   { id: "heroes", image: "heroes-of-empire.jpg", color: "#dfd5b7" },

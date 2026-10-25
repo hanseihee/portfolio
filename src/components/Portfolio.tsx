@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
-  type CSSProperties,
 } from "react";
 import {
   ArrowDown,
@@ -41,7 +40,7 @@ import {
   type ProjectCategory,
 } from "@/lib/portfolio";
 import OrbitScene from "./OrbitScene";
-import ProjectArtwork from "./ProjectArtwork";
+import ProjectMedia from "./ProjectMedia";
 import { ProjectDialog, SearchDialog } from "./PortfolioDialogs";
 
 let fallbackMotion: boolean | null = null;
@@ -77,7 +76,7 @@ export default function Portfolio() {
   const [projectId, setProjectId] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [category, setCategory] = useState<ProjectCategory | "all">("all");
-  const [view, setView] = useState<"list" | "grid">("list");
+  const [view, setView] = useState<"list" | "grid">("grid");
   const [expanded, setExpanded] = useState(false);
   const [era, setEra] = useState(2);
   const [activeSection, setActiveSection] = useState("home");
@@ -459,7 +458,7 @@ export default function Portfolio() {
                     event.currentTarget.style.setProperty("--tilt-y", "0deg");
                   }}
                 >
-                  <ProjectArtwork type={id} />
+                  <ProjectMedia project={project} />
                   <div className="featured-info">
                     <div>
                       <p className="eyebrow">
@@ -472,6 +471,7 @@ export default function Portfolio() {
                         <ArrowUpRight size={23} />
                       </h3>
                       <p>{subtitles[index]}</p>
+                      <p className="featured-outcome">{project.metric}</p>
                     </div>
                     <span className="featured-index mono">0{index + 1}</span>
                   </div>
@@ -497,6 +497,7 @@ export default function Portfolio() {
                   onClick={() => setView("list")}
                 >
                   <List size={17} />
+                  <span>{ko ? "리스트" : "List"}</span>
                 </button>
                 <button
                   aria-label={ko ? "그리드 보기" : "Grid view"}
@@ -504,6 +505,7 @@ export default function Portfolio() {
                   onClick={() => setView("grid")}
                 >
                   <Grid2X2 size={16} />
+                  <span>{ko ? "카드" : "Cards"}</span>
                 </button>
               </div>
             </div>
@@ -552,26 +554,43 @@ export default function Portfolio() {
             <div
               className={`archive-projects ${view === "grid" ? "archive-grid" : "archive-list"}`}
             >
-              {shown.map((project, index) => (
+              {shown.map((project) => (
                 <button
                   key={project.id}
                   className="archive-project"
                   onClick={() => openProject(project.id)}
-                  style={{ "--project-color": project.color } as CSSProperties}
                 >
-                  <span className="archive-index mono">
-                    {String(index + 1).padStart(2, "0")}
+                  <ProjectMedia
+                    project={project}
+                    sizes={
+                      view === "grid"
+                        ? "(max-width: 700px) 100vw, 50vw"
+                        : "(max-width: 700px) 100vw, 40vw"
+                    }
+                  />
+                  <span className="archive-content">
+                    <span className="archive-meta">
+                      <span>{project.company}</span>
+                      <span>{project.period}</span>
+                    </span>
+                    <span className="archive-name">
+                      <strong>{project.name}</strong>
+                    </span>
+                    <span className="archive-description">
+                      {project.description.split("\n")[0].replace(/^•\s*/, "")}
+                    </span>
+                    <span className="archive-outcome">{project.metric}</span>
+                    <span className="archive-card-bottom">
+                      <span className="archive-tags">
+                        {project.tags.slice(0, 3).map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </span>
+                      <span className="archive-open">
+                        <ArrowUpRight size={22} />
+                      </span>
+                    </span>
                   </span>
-                  <span className="archive-project-icon">
-                    {project.name.charAt(0)}
-                  </span>
-                  <span className="archive-name">
-                    <strong>{project.name}</strong>
-                    <small>{project.company}</small>
-                  </span>
-                  <span className="archive-tag">{project.tags[0]}</span>
-                  <span className="archive-period mono">{project.period}</span>
-                  <ArrowUpRight className="archive-arrow" size={19} />
                 </button>
               ))}
             </div>

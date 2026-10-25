@@ -49,6 +49,8 @@ test("archive filters, expands, changes layout, and opens details", async ({
   await expect(page.locator(".archive-project")).toHaveCount(6);
   await page.getByRole("button", { name: "1개 프로젝트 더 보기" }).click();
   await expect(page.locator(".archive-project")).toHaveCount(7);
+  await page.getByRole("button", { name: "목록 보기" }).click();
+  await expect(page.locator(".archive-projects")).toHaveClass(/archive-list/);
   await page.getByRole("button", { name: "그리드 보기" }).click();
   await expect(page.locator(".archive-projects")).toHaveClass(/archive-grid/);
   await page

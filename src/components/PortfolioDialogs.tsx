@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowDownLeft, ArrowUpRight, Search, X } from "lucide-react";
 import type { Project } from "@/lib/portfolio";
+import ProjectMedia from "./ProjectMedia";
 
 export function ProjectDialog({
   project,
@@ -41,26 +41,23 @@ export function ProjectDialog({
               <X size={21} />
             </button>
           </div>
-          <div
-            className="project-dialog-art"
-            style={{ background: project.color }}
-          >
-            <span className="dialog-art-word" aria-hidden="true">
-              {project.id.toUpperCase()}.
-            </span>
-            {project.image && (
-              <Image
-                src={`/images/${project.image}`}
-                alt={project.name}
-                width={700}
-                height={420}
-                className="project-screenshot"
-              />
-            )}
-            <span className="art-index mono">
-              SEI HEE HAN · SELECTED EXPERIENCE
-            </span>
-          </div>
+          <ProjectMedia
+            project={project}
+            className="dialog-project-media"
+            sizes="(max-width: 960px) 100vw, 960px"
+          />
+          {project.image && (
+            <div className="dialog-media-actions">
+              <a
+                href={`/images/${project.image}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {locale === "ko" ? "이미지 크게 보기" : "View full-size image"}
+                <ArrowUpRight size={18} />
+              </a>
+            </div>
+          )}
           <div className="dialog-content">
             <div className="dialog-meta mono">
               <span>{project.company}</span>
