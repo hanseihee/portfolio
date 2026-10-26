@@ -1,31 +1,33 @@
 import { expect, test } from "@playwright/test";
 
-test("project sculpture changes shape, responds to dragging, and opens a project", async ({
+test("hero profile and company logos render without errors", async ({
   page,
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await page.getByRole("button", { name: "Helix", exact: true }).click();
-  await expect(
-    page.getByRole("button", { name: "Helix", exact: true }),
-  ).toHaveAttribute("aria-pressed", "true");
-  const canvas = page.locator("canvas").first();
-  const bounds = (await canvas.boundingBox())!;
-  await page.mouse.move(
-    bounds.x + bounds.width / 2,
-    bounds.y + bounds.height / 2,
-  );
-  await page.mouse.down();
-  await page.mouse.move(
-    bounds.x + bounds.width / 2 + 80,
-    bounds.y + bounds.height / 2 + 30,
-    { steps: 12 },
-  );
-  await expect(page.locator(".orbit-stage")).toHaveClass(/is-dragging/);
-  await page.mouse.up();
-  await expect(page.locator(".orbit-stage")).not.toHaveClass(/is-dragging/);
-  await page.locator(".orbit-label-0").click();
+  const profile = page.getByRole("complementary", { name: "프로필 요약" });
+  await expect(profile).toContainText("SPOTV");
+  await expect(profile.locator(".local-time")).toContainText(/\d{2}:\d{2}/);
+  const logos = page.locator(".company-logos").getByRole("img");
+  await expect(logos).toHaveCount(6);
+  await expect(page.getByRole("img", { name: "KBS" })).toHaveCount(0);
+  for (const logo of await logos.all()) {
+    const box = (await logo.boundingBox())!;
+    expect(box.width).toBeGreaterThan(40);
+    expect(box.height).toBeGreaterThan(15);
+  }
+  expect(errors).toEqual([]);
+});
+
+test("one work gallery leads with featured projects and lists each project once", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const featured = page.locator(".archive-project.is-featured");
+  await expect(featured).toHaveCount(3);
+  await expect(page.locator(".archive-projects")).toHaveClass(/is-curated/);
+  await featured.first().click();
   await expect(
     page.getByRole("dialog").getByRole("heading", { name: "Esports.op.gg" }),
   ).toBeVisible();
@@ -34,8 +36,15 @@ test("project sculpture changes shape, responds to dragging, and opens a project
   ).toHaveAttribute("href", "https://esports.op.gg/");
   await page.keyboard.press("Escape");
   await expect(page.locator("dialog[open]")).toHaveCount(0);
-  await expect(page.locator(".orbit-label-0")).toBeFocused();
-  expect(errors).toEqual([]);
+  await expect(featured.first()).toBeFocused();
+  await expect(page.locator(".archive-project")).toHaveCount(9);
+  await page.getByRole("button", { name: "11개 프로젝트 더 보기" }).click();
+  await expect(page.locator(".archive-project")).toHaveCount(20);
+  for (const name of ["Esports.op.gg", "김프가 (KIMPGA)", "F1-boxbox.com"]) {
+    await expect(
+      page.locator(".archive-project").filter({ hasText: name }),
+    ).toHaveCount(1);
+  }
 });
 
 test("archive filters, expands, changes layout, and opens details", async ({
@@ -151,7 +160,7 @@ test("mobile navigation stays at the bottom without horizontal overflow", async 
     page.getByRole("link", { name: "이메일 보내기" }),
   ).toBeInViewport();
   await nav.getByRole("link", { name: "프로젝트" }).click();
-  await page.locator(".featured-card").first().click();
+  await page.locator(".archive-project").first().click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.getByRole("button", { name: "프로젝트 닫기" }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(

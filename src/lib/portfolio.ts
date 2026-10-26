@@ -87,6 +87,26 @@ export function getProjects(locale: Locale): Project[] {
   ];
 }
 
+export const featuredIds = ["esports", "kimpga", "f1"] as const;
+export const isFeatured = (id: string) =>
+  (featuredIds as readonly string[]).includes(id);
+export const featuredTaglines: Record<string, [ko: string, en: string]> = {
+  esports: ["게임을 보는 새로운 방법", "A new way to experience esports"],
+  kimpga: ["가격 차이에서 발견한 기회", "Opportunity in the difference"],
+  f1: ["팬의 호기심이 만든 레이스", "Built by curiosity. Driven by fans."],
+};
+
+// Official wordmarks, newest first. `height` is tuned per logo so that heavy
+// and light marks read at the same visual weight.
+export const companies = [
+  { name: "SPOTV", logo: "spotv.png", ratio: 2.877, height: 27 },
+  { name: "GME", logo: "gme.png", ratio: 3.254, height: 30 },
+  { name: "OP.GG", logo: "opgg.svg", ratio: 4.125, height: 21 },
+  { name: "GOPAX", logo: "gopax.svg", ratio: 4.25, height: 23 },
+  { name: "번개장터", logo: "bunjang.svg", ratio: 4.686, height: 25 },
+  { name: "d'strict", logo: "dstrict.png", ratio: 4.063, height: 22 },
+];
+
 export const contact = {
   email: "realmasse@gmail.com",
   github: "https://github.com/hanseihee",

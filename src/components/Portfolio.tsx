@@ -7,9 +7,9 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
+  type CSSProperties,
 } from "react";
 import {
-  ArrowDown,
   ArrowDownRight,
   ArrowRight,
   ArrowUp,
@@ -34,12 +34,15 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import {
+  companies,
   contact,
   eras,
+  featuredIds,
+  featuredTaglines,
   getProjects,
+  isFeatured,
   type ProjectCategory,
 } from "@/lib/portfolio";
-import OrbitScene from "./OrbitScene";
 import ProjectMedia from "./ProjectMedia";
 import { ProjectDialog, SearchDialog } from "./PortfolioDialogs";
 
@@ -73,6 +76,13 @@ export default function Portfolio() {
   const { locale, setLocale } = useLanguage();
   const ko = locale === "ko";
   const projects = useMemo(() => getProjects(locale), [locale]);
+  const orderedProjects = useMemo(
+    () => [
+      ...featuredIds.map((id) => projects.find((project) => project.id === id)!),
+      ...projects.filter((project) => !isFeatured(project.id)),
+    ],
+    [projects],
+  );
   const [projectId, setProjectId] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [category, setCategory] = useState<ProjectCategory | "all">("all");
@@ -80,7 +90,7 @@ export default function Portfolio() {
   const [expanded, setExpanded] = useState(false);
   const [era, setEra] = useState(2);
   const [activeSection, setActiveSection] = useState("home");
-  const [clock, setClock] = useState("SEOUL, KR");
+  const [clock, setClock] = useState("--:--:-- KST");
   const [toast, setToast] = useState("");
   const [exporting, setExporting] = useState(false);
   const resumeRef = useRef<HTMLElement>(null);
@@ -204,10 +214,13 @@ export default function Portfolio() {
       setExporting(false);
     }
   };
-  const filtered = projects.filter(
+  // Featured projects lead every view; "all" + grid renders them as a bento row.
+  const filtered = orderedProjects.filter(
     (project) => category === "all" || project.category === category,
   );
-  const shown = expanded ? filtered : filtered.slice(0, 6);
+  const curated = category === "all" && view === "grid";
+  const limit = category === "all" ? 9 : 6;
+  const shown = expanded ? filtered : filtered.slice(0, limit);
   const activeEra = eras[era];
   const currentProject =
     projects.find((project) => project.id === projectId) ?? null;
@@ -271,16 +284,6 @@ export default function Portfolio() {
       </header>
       <main>
         <section id="home" className="hero section-shell">
-          <div className="hero-topline">
-            <span className="availability mono">
-              <i />
-              OPEN TO GOOD CONVERSATIONS
-            </span>
-            <span className="location mono">
-              <span className="location-dot" />
-              SEOUL, SOUTH KOREA <span className="local-time">{clock}</span>
-            </span>
-          </div>
           <div className="hero-grid">
             <div className="hero-copy">
               <p className="eyebrow hero-intro">
@@ -329,74 +332,104 @@ export default function Portfolio() {
                   <ArrowRight size={16} />
                 </a>
               </div>
-              <div className="hero-signature">
-                <span className="signature">Sei Hee.</span>
-                <span className="mono">
-                  A BUILDER, AT HEART.
-                  <br />
-                  SINCE 2008.
+            </div>
+            <aside
+              className="profile-card"
+              aria-label={ko ? "프로필 요약" : "Profile at a glance"}
+            >
+              <div className="profile-top mono">
+                <span className="availability">
+                  <i />
+                  NOW
                 </span>
+                <span className="local-time">SEOUL · {clock}</span>
               </div>
-            </div>
-            <OrbitScene
-              onProject={openProject}
-              reducedMotion={reducedMotion}
-              locale={locale}
-            />
-          </div>
-          <div className="hero-bottom">
-            <div className="hero-stats">
-              <div>
-                <strong>
-                  9<span>yrs</span>
-                </strong>
-                <span>{ko ? "개발자로 쌓은 깊이" : "BUILDING WITH CODE"}</span>
+              <div className="profile-now">
+                <strong>SPOTV</strong>
+                <p>
+                  {ko
+                    ? "지금은 SPOTV에서 제품을 만듭니다."
+                    : "Currently building products at SPOTV."}
+                </p>
               </div>
-              <div>
-                <strong>
-                  8<span>yrs</span>
-                </strong>
-                <span>{ko ? "제품을 키워온 시간" : "LEADING PRODUCTS"}</span>
+              <div className="profile-career">
+                <div className="career-years mono" aria-hidden="true">
+                  <span>2008</span>
+                  <span>2017</span>
+                  <span>NOW</span>
+                </div>
+                <div className="career-bar" aria-hidden="true">
+                  <span className="career-dev" />
+                  <span className="career-pm" />
+                </div>
+                <div className="career-labels">
+                  <span>
+                    <i className="career-dev" />
+                    {ko ? "개발 9년" : "9 yrs engineering"}
+                  </span>
+                  <span>
+                    <i className="career-pm" />
+                    {ko ? "프로덕트 8년" : "8 yrs product"}
+                  </span>
+                </div>
               </div>
-              <div>
-                <strong>
-                  20<span>+</span>
-                </strong>
-                <span>{ko ? "아이디어에서 제품으로" : "IDEAS MADE REAL"}</span>
-              </div>
-            </div>
-            <a className="scroll-cue mono" href="#work">
-              <span>
-                SCROLL TO
-                <br />
-                CONNECT THE DOTS
-              </span>
-              <span className="scroll-circle">
-                <ArrowDown size={19} />
-              </span>
-            </a>
+              <dl className="profile-stats">
+                <div>
+                  <dt>{ko ? "만든 제품" : "Products shipped"}</dt>
+                  <dd>
+                    20<span>+</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>{ko ? "매각 경험" : "Exits"}</dt>
+                  <dd>2</dd>
+                </div>
+                <div>
+                  <dt>{ko ? "양대 앱마켓" : "On both app stores"}</dt>
+                  <dd>
+                    {ko ? (
+                      <>
+                        1<span>위</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>#</span>1
+                      </>
+                    )}
+                  </dd>
+                </div>
+              </dl>
+            </aside>
           </div>
         </section>
         <div className="companies-strip">
           <span className="mono">
             {ko ? "함께 만들어온 경험" : "A FEW PLACES ALONG THE WAY"}
           </span>
-          <div className="company-names">
-            <span className="company-opgg">OP.GG</span>
-            <span className="company-gopax">gopax</span>
-            <span className="company-bunjang">번개장터</span>
-            <span className="company-gme">
-              GME<span>remit</span>
-            </span>
-            <span className="company-kbs">KBS</span>
-            <span className="company-dstrict">d’strict</span>
-          </div>
+          <ul className="company-logos">
+            {companies.map((company) => (
+              <li key={company.name}>
+                <span
+                  role="img"
+                  aria-label={company.name}
+                  className="company-logo"
+                  style={
+                    {
+                      "--logo": `url(/logos/${company.logo})`,
+                      "--logo-ratio": company.ratio,
+                      "--logo-height": `${company.height}px`,
+                    } as CSSProperties
+                  }
+                />
+              </li>
+            ))}
+          </ul>
         </div>
         <section id="work" className="work-section section-shell">
           <div className="section-heading" data-reveal>
             <div>
               <p className="eyebrow">
-                <span className="section-number">01 /</span> SELECTED WORK
+                <span className="section-number">01 /</span> WORK
               </p>
               <h2>
                 Built with purpose.
@@ -421,94 +454,7 @@ export default function Portfolio() {
               <ArrowDownRight size={27} />
             </p>
           </div>
-          <div className="featured-grid">
-            {(["esports", "kimpga", "f1"] as const).map((id, index) => {
-              const project = projects.find((item) => item.id === id)!;
-              const subtitles = ko
-                ? [
-                    "게임을 보는 새로운 방법",
-                    "가격 차이에서 발견한 기회",
-                    "팬의 호기심이 만든 레이스",
-                  ]
-                : [
-                    "A new way to experience esports",
-                    "Opportunity in the difference",
-                    "Built by curiosity. Driven by fans.",
-                  ];
-              return (
-                <button
-                  key={id}
-                  className={`featured-card featured-${id}`}
-                  onClick={() => openProject(id)}
-                  data-reveal
-                  onPointerMove={(event) => {
-                    if (reducedMotion || event.pointerType !== "mouse") return;
-                    const rect = event.currentTarget.getBoundingClientRect();
-                    event.currentTarget.style.setProperty(
-                      "--tilt-x",
-                      `${((event.clientY - rect.top) / rect.height - 0.5) * -6}deg`,
-                    );
-                    event.currentTarget.style.setProperty(
-                      "--tilt-y",
-                      `${((event.clientX - rect.left) / rect.width - 0.5) * 7}deg`,
-                    );
-                  }}
-                  onPointerLeave={(event) => {
-                    event.currentTarget.style.setProperty("--tilt-x", "0deg");
-                    event.currentTarget.style.setProperty("--tilt-y", "0deg");
-                  }}
-                >
-                  <ProjectMedia project={project} />
-                  <div className="featured-info">
-                    <div>
-                      <p className="eyebrow">
-                        {index === 0
-                          ? "PRODUCT LEADERSHIP"
-                          : "INDEPENDENT PROJECT"}
-                      </p>
-                      <h3>
-                        {project.name}
-                        <ArrowUpRight size={23} />
-                      </h3>
-                      <p>{subtitles[index]}</p>
-                      <p className="featured-outcome">{project.metric}</p>
-                    </div>
-                    <span className="featured-index mono">0{index + 1}</span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-          <div className="archive" data-reveal>
-            <div className="archive-header">
-              <div>
-                <span className="eyebrow">THE REST OF THE CONSTELLATION</span>
-                <h3>
-                  {ko
-                    ? "계속 만들어가는 기록"
-                    : "More things I’ve put into the world."}
-                  <span>{projects.length}</span>
-                </h3>
-              </div>
-              <div className="view-switch">
-                <button
-                  aria-label={ko ? "목록 보기" : "List view"}
-                  aria-pressed={view === "list"}
-                  onClick={() => setView("list")}
-                >
-                  <List size={17} />
-                  <span>{ko ? "리스트" : "List"}</span>
-                </button>
-                <button
-                  aria-label={ko ? "그리드 보기" : "Grid view"}
-                  aria-pressed={view === "grid"}
-                  onClick={() => setView("grid")}
-                >
-                  <Grid2X2 size={16} />
-                  <span>{ko ? "카드" : "Cards"}</span>
-                </button>
-              </div>
-            </div>
+          <div className="work-toolbar" data-reveal>
             <div
               className="archive-filters"
               aria-label={ko ? "프로젝트 분류" : "Project categories"}
@@ -543,6 +489,8 @@ export default function Portfolio() {
                   </span>
                 </button>
               ))}
+            </div>
+            <div className="work-tools">
               <button
                 className="archive-search"
                 onClick={() => setSearchOpen(true)}
@@ -550,24 +498,53 @@ export default function Portfolio() {
               >
                 <Search size={17} />
               </button>
+              <div className="view-switch">
+                <button
+                  aria-label={ko ? "그리드 보기" : "Grid view"}
+                  aria-pressed={view === "grid"}
+                  onClick={() => setView("grid")}
+                >
+                  <Grid2X2 size={16} />
+                  <span>{ko ? "카드" : "Cards"}</span>
+                </button>
+                <button
+                  aria-label={ko ? "목록 보기" : "List view"}
+                  aria-pressed={view === "list"}
+                  onClick={() => setView("list")}
+                >
+                  <List size={17} />
+                  <span>{ko ? "리스트" : "List"}</span>
+                </button>
+              </div>
             </div>
-            <div
-              className={`archive-projects ${view === "grid" ? "archive-grid" : "archive-list"}`}
-            >
-              {shown.map((project) => (
+          </div>
+          <div
+            className={`archive-projects ${view === "grid" ? "archive-grid" : "archive-list"} ${curated ? "is-curated" : ""}`}
+          >
+            {shown.map((project) => {
+              const featured = isFeatured(project.id);
+              const lead = curated && project.id === featuredIds[0];
+              return (
                 <button
                   key={project.id}
-                  className="archive-project"
+                  className={`archive-project ${featured ? `is-featured featured-${project.id}` : ""}`}
                   onClick={() => openProject(project.id)}
                 >
                   <ProjectMedia
                     project={project}
                     sizes={
-                      view === "grid"
-                        ? "(max-width: 700px) 100vw, 50vw"
-                        : "(max-width: 700px) 100vw, 40vw"
+                      view === "list"
+                        ? "160px"
+                        : lead
+                          ? "(max-width: 700px) 100vw, 66vw"
+                          : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
                     }
                   />
+                  {featured && (
+                    <span className="featured-badge mono">
+                      {ko ? "대표 프로젝트" : "FEATURED"}
+                    </span>
+                  )}
                   <span className="archive-content">
                     <span className="archive-meta">
                       <span>{project.company}</span>
@@ -577,39 +554,38 @@ export default function Portfolio() {
                       <strong>{project.name}</strong>
                     </span>
                     <span className="archive-description">
-                      {project.description.split("\n")[0].replace(/^•\s*/, "")}
+                      {featured
+                        ? featuredTaglines[project.id][ko ? 0 : 1]
+                        : project.description
+                            .split("\n")[0]
+                            .replace(/^•\s*/, "")}
                     </span>
-                    <span className="archive-outcome">{project.metric}</span>
                     <span className="archive-card-bottom">
-                      <span className="archive-tags">
-                        {project.tags.slice(0, 3).map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </span>
+                      <span className="archive-outcome">{project.metric}</span>
                       <span className="archive-open">
-                        <ArrowUpRight size={22} />
+                        <ArrowUpRight size={20} />
                       </span>
                     </span>
                   </span>
                 </button>
-              ))}
-            </div>
-            {filtered.length > 6 && (
-              <button
-                className="show-more"
-                onClick={() => setExpanded(!expanded)}
-              >
-                {expanded
-                  ? ko
-                    ? "접어두기"
-                    : "Show less"
-                  : ko
-                    ? `${filtered.length - 6}개 프로젝트 더 보기`
-                    : `Explore ${filtered.length - 6} more projects`}
-                {expanded ? <Minus size={16} /> : <Plus size={16} />}
-              </button>
-            )}
+              );
+            })}
           </div>
+          {filtered.length > limit && (
+            <button
+              className="show-more"
+              onClick={() => setExpanded(!expanded)}
+            >
+              {expanded
+                ? ko
+                  ? "접어두기"
+                  : "Show less"
+                : ko
+                  ? `${filtered.length - limit}개 프로젝트 더 보기`
+                  : `Explore ${filtered.length - limit} more projects`}
+              {expanded ? <Minus size={16} /> : <Plus size={16} />}
+            </button>
+          )}
         </section>
         <section id="about" className="about-section">
           <div className="section-shell">
