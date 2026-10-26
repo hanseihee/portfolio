@@ -11,7 +11,9 @@ test("hero profile and company logos render without errors", async ({
   await expect(profile.locator(".local-time")).toContainText(/\d{2}:\d{2}/);
   const logos = page.locator(".company-logos").getByRole("img");
   await expect(logos).toHaveCount(6);
-  await expect(page.getByRole("img", { name: "KBS" })).toHaveCount(0);
+  await expect(
+    page.locator(".company-logos").getByRole("img", { name: "KBS" }),
+  ).toHaveCount(0);
   for (const logo of await logos.all()) {
     const box = (await logo.boundingBox())!;
     expect(box.width).toBeGreaterThan(40);
@@ -37,14 +39,16 @@ test("one work gallery leads with featured projects and lists each project once"
   await page.keyboard.press("Escape");
   await expect(page.locator("dialog[open]")).toHaveCount(0);
   await expect(featured.first()).toBeFocused();
-  await expect(page.locator(".archive-project")).toHaveCount(9);
-  await page.getByRole("button", { name: "11개 프로젝트 더 보기" }).click();
   await expect(page.locator(".archive-project")).toHaveCount(20);
   for (const name of ["Esports.op.gg", "김프가 (KIMPGA)", "F1-boxbox.com"]) {
     await expect(
       page.locator(".archive-project").filter({ hasText: name }),
     ).toHaveCount(1);
   }
+  await page.getByRole("button", { name: "접어두기" }).click();
+  await expect(page.locator(".archive-project")).toHaveCount(9);
+  await page.getByRole("button", { name: "11개 프로젝트 더 보기" }).click();
+  await expect(page.locator(".archive-project")).toHaveCount(20);
 });
 
 test("archive filters, expands, changes layout, and opens details", async ({
@@ -55,6 +59,8 @@ test("archive filters, expands, changes layout, and opens details", async ({
     .locator(".archive-filters")
     .getByRole("button", { name: "개발" })
     .click();
+  await expect(page.locator(".archive-project")).toHaveCount(7);
+  await page.getByRole("button", { name: "접어두기" }).click();
   await expect(page.locator(".archive-project")).toHaveCount(6);
   await page.getByRole("button", { name: "1개 프로젝트 더 보기" }).click();
   await expect(page.locator(".archive-project")).toHaveCount(7);

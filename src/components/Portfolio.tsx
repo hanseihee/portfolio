@@ -87,7 +87,7 @@ export default function Portfolio() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [category, setCategory] = useState<ProjectCategory | "all">("all");
   const [view, setView] = useState<"list" | "grid">("grid");
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const [era, setEra] = useState(2);
   const [activeSection, setActiveSection] = useState("home");
   const [clock, setClock] = useState("--:--:-- KST");
@@ -474,10 +474,7 @@ export default function Portfolio() {
                 <button
                   key={filter.id}
                   aria-pressed={category === filter.id}
-                  onClick={() => {
-                    setCategory(filter.id);
-                    setExpanded(false);
-                  }}
+                  onClick={() => setCategory(filter.id)}
                 >
                   {ko ? filter.kr : filter.en}
                   <span>
