@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
-import { Archivo, Space_Grotesk } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Sans, Phudu } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
 import "./portfolio.css";
 import "./projects.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const phudu = Phudu({
+  variable: "--font-phudu",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
 });
+
+// Resolve the motion preference before first paint so entrance animations
+// never flash. Mirrors motionSnapshot() in Portfolio.tsx.
+const motionScript = `(function(){var d=document.documentElement,s=null;try{s=localStorage.getItem("portfolio-motion")}catch(e){}var r=s?s==="reduced":window.matchMedia("(prefers-reduced-motion: reduce)").matches;d.dataset.motion=r?"reduced":"full"})()`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -38,14 +40,24 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#02090f",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html
+      lang="ko"
+      className={`${phudu.variable} ${instrumentSans.variable}`}
+      suppressHydrationWarning
+    >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: motionScript }} />
         <link
           rel="stylesheet"
           as="style"
@@ -53,9 +65,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body
-        className={`${archivo.variable} ${spaceGrotesk.variable} antialiased`}
-      >
+      <body className="antialiased">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

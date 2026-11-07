@@ -28,7 +28,20 @@ test("one work gallery leads with featured projects and lists each project once"
   await page.goto("/");
   const featured = page.locator(".archive-project.is-featured");
   await expect(featured).toHaveCount(3);
-  await expect(page.locator(".archive-projects")).toHaveClass(/is-curated/);
+  // The list is the default view, and its toggle comes first.
+  const gallery = page.locator(".archive-projects");
+  await expect(gallery).toHaveClass(/archive-list/);
+  await expect(gallery).not.toHaveClass(/is-curated/);
+  await expect(page.locator(".view-switch button").first()).toHaveAccessibleName(
+    "목록 보기",
+  );
+  await expect(page.locator(".archive-project").first()).toContainText(
+    "Esports.op.gg",
+  );
+  await page.getByRole("button", { name: "그리드 보기" }).click();
+  await expect(gallery).toHaveClass(/is-curated/);
+  await expect(page.locator(".featured-stack .archive-project")).toHaveCount(3);
+  await page.getByRole("button", { name: "목록 보기" }).click();
   await featured.first().click();
   await expect(
     page.getByRole("dialog").getByRole("heading", { name: "Esports.op.gg" }),
@@ -180,7 +193,27 @@ test("system reduced motion is respected before interacting", async ({
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator(".portfolio")).toHaveClass(/motion-reduced/);
+  await expect(page.locator("html")).toHaveAttribute("data-motion", "reduced");
   await expect(
     page.getByRole("button", { name: "애니메이션 켜기" }),
   ).toBeVisible();
+  await expect(page.locator(".counter dd").first()).toHaveText("17+");
+});
+
+test("scroll reveals and counters animate once in view", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("data-motion", "full");
+  const heading = page.locator(".glance-heading");
+  await expect(heading).toHaveAccessibleName(
+    "From a small observation to millions of lives.",
+  );
+  await expect(heading).not.toHaveAttribute("data-shown");
+  await heading.scrollIntoViewIfNeeded();
+  await expect(heading).toHaveAttribute("data-shown", "");
+  const counter = page.locator(".counter dd").first();
+  await counter.scrollIntoViewIfNeeded();
+  await expect(counter).toHaveText("17+");
+  await page.getByRole("button", { name: "애니메이션 멈추기" }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-motion", "reduced");
 });

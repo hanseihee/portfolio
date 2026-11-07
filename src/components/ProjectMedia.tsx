@@ -34,7 +34,7 @@ export default function ProjectMedia({
       style={
         {
           "--media-background":
-            imageBackgrounds[project.image ?? ""] ?? "#e9ece5",
+            imageBackgrounds[project.image ?? ""] ?? "#121a21",
         } as CSSProperties
       }
     >

@@ -88,13 +88,15 @@ export function ProjectDialog({
             </div>
             {project.link && (
               <a
-                className="button button-dark"
+                className="button"
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
               >
                 {locale === "ko" ? "프로젝트 방문" : "Visit project"}
-                <ArrowUpRight size={18} />
+                <span className="button-icon">
+                  <ArrowUpRight size={18} />
+                </span>
               </a>
             )}
           </div>

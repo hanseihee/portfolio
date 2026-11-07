@@ -5,6 +5,19 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+function Star({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100">
+      <path
+        d="M50 7v86M7 50h86M19.6 19.6l60.8 60.8M80.4 19.6 19.6 80.4"
+        stroke="#fd492e"
+        strokeWidth="12"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export default function OpenGraphImage() {
   return new ImageResponse(
     <div
@@ -12,8 +25,10 @@ export default function OpenGraphImage() {
         display: "flex",
         width: "100%",
         height: "100%",
-        background: "#f6f5ef",
-        color: "#252b27",
+        backgroundColor: "#02090f",
+        backgroundImage:
+          "radial-gradient(circle at 0% 0%, #b20e28 0%, transparent 55%), radial-gradient(circle at 45% 40%, #760848 0%, transparent 55%), radial-gradient(circle at 25% 100%, #4212aa 0%, transparent 55%)",
+        color: "#fff",
         padding: 65,
         flexDirection: "column",
         justifyContent: "space-between",
@@ -22,95 +37,54 @@ export default function OpenGraphImage() {
       <div
         style={{
           display: "flex",
-          fontSize: 19,
-          letterSpacing: 3,
+          fontSize: 22,
+          fontWeight: 700,
+          letterSpacing: 2,
           justifyContent: "space-between",
         }}
       >
-        <span>SEI HEE HAN</span>
-        <span style={{ color: "#748266", fontSize: 14 }}>
+        <span style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Star size={28} />
+          SEI HEE HAN
+        </span>
+        <span style={{ color: "rgba(255,255,255,0.72)", fontSize: 16 }}>
           PRODUCT BUILDER / SEOUL
         </span>
       </div>
       <div
         style={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          flexDirection: "column",
+          fontSize: 132,
+          fontWeight: 800,
+          letterSpacing: -4,
+          lineHeight: 0.95,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            fontSize: 108,
-            fontWeight: 600,
-            letterSpacing: -7,
-            lineHeight: 1.05,
-          }}
-        >
-          <span>Ideas into</span>
-          <span style={{ color: "#e75b37" }}>impact.</span>
-        </div>
-        <svg width="370" height="370" viewBox="0 0 370 370">
-          <circle
-            cx="185"
-            cy="185"
-            r="130"
-            stroke="#bcc5ae"
-            strokeWidth="1"
-            fill="#e9ecdf"
-          />
-          <ellipse
-            cx="185"
-            cy="185"
-            rx="175"
-            ry="68"
-            stroke="#e75b37"
-            strokeWidth="2"
-            fill="none"
-            transform="rotate(-35 185 185)"
-          />
-          <ellipse
-            cx="185"
-            cy="185"
-            rx="155"
-            ry="90"
-            stroke="#a5b195"
-            strokeWidth="1"
-            fill="none"
-            transform="rotate(45 185 185)"
-          />
-          <ellipse
-            cx="185"
-            cy="185"
-            rx="50"
-            ry="130"
-            stroke="#a5b195"
-            strokeWidth="1"
-            fill="none"
-          />
-          <path
-            d="M55 185h260M75 120h220M75 250h220"
-            stroke="#bcc5ae"
-            strokeWidth="1"
-          />
-          <circle cx="315" cy="122" r="9" fill="#e75b37" />
-          <circle cx="64" cy="259" r="5" fill="#748266" />
-        </svg>
+        <span>IDEAS</span>
+        <span style={{ display: "flex", alignItems: "center" }}>
+          <span style={{ display: "flex", marginRight: 24 }}>
+            <Star size={104} />
+          </span>
+          INTO IMPACT
+          <span style={{ color: "#fd492e" }}>.</span>
+        </span>
       </div>
       <div
         style={{
           display: "flex",
-          borderTop: "1px solid #d9dcd2",
+          borderTop: "1px solid rgba(255,255,255,0.22)",
           paddingTop: 24,
-          fontSize: 16,
+          fontSize: 18,
+          fontWeight: 700,
           letterSpacing: 1,
           justifyContent: "space-between",
         }}
       >
         <span>DEVELOPER’S MIND. PRODUCT’S HEART.</span>
-        <span style={{ color: "#748266" }}>OP.GG · KIMPGA · F1 BOXBOX</span>
+        <span style={{ color: "rgba(255,255,255,0.72)" }}>
+          OP.GG · KIMPGA · F1 BOXBOX
+        </span>
       </div>
     </div>,
     size,
